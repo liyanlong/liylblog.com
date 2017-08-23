@@ -15,7 +15,6 @@
       document.domain = domain;
       var ifr = document.createElement('iframe');
       ifr.display = 'none';
-      document.domain = ~dotIndex ? document.domain.substr(dotIndex + 1) : document.domain;
       ifr.src = src;
       document.body.appendChild(ifr);
       return new Promise (function (resolve, reject) {
