@@ -14,8 +14,8 @@
     var getDomainIframe = (function (domain, src) {
       document.domain = domain;
       var ifr = document.createElement('iframe');
-      ifr.display = 'none';
       ifr.src = src;
+      ifr.style.display = 'none';
       document.body.appendChild(ifr);
       return new Promise (function (resolve, reject) {
         ifr.onload = function () {
@@ -26,7 +26,6 @@
     })('liylblog.com', 'http://m.liylblog.com/public/examples/2017/cros_domain/diff_subdomain/m.html');
 
     getDomainIframe.then(function (win) {
-      console.log(win.document);
       var xhr = new win.XMLHttpRequest();
       getData(xhr, function (data) {
         document.querySelector('#console').innerHTML = data;
