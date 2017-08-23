@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta name="keywords" content="js内存泄露介绍, 小李子的博客, js-heap">
+    <meta name="author" content="小李子">
+    <meta name="description" content="小李子的博客在线demo案例">
+    <title>js内存泄露介绍 - 小李子的博客</title>
+  </head>
+  <body>
+    <p>内存泄漏之 - 闭包</p>
+    <button id="btn1">开始</button>
+    <button id="btn2">结束</button>
+    <div>
+      当前执行<span id="console">0</span>次
+    </div>
+  </body>
+  <script>
+    var theThing = null;
+    var _interval = null;
+    var count = 0;
+    var replaceThing = function () {
+      // 新增对象的引用
+      var originalThing = theThing;
+
+      var unused = function () {
+        // 构建了个闭包, 引用了 originalThing
+        if (originalThing) {
+          console.log("hi");
+        }
+      };
+
+      // 重新创建对象引用
+      theThing = {
+        // 字符串块大小
+        longStr: new Array(1000000).join('*'),
+        // someMethod  与 unsued 共享 闭包范围
+        // 即使 unused 未使用, 也不会释放 originalThing
+        someMethod: function () {
+        }
+      };
+      var p = document.createElement('div');
+      document.querySelector('#console').innerText = ++count;
+
+      // 加入后可以释放 originalThing 的对象
+      originalThing = null;
+    }; 
+    document.querySelector('#btn1').addEventListener('click', function () {
+      if (!_interval) {
+        _interval = setInterval(replaceThing, 1000);
+      }
+    });
+
+    document.querySelector('#btn2').addEventListener('click', function () {
+      if (_interval) {
+        clearInterval(_interval);
+      }
+      theThing = null;
+    });
+  </script>
+</html>
