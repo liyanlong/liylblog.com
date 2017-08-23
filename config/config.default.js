@@ -14,6 +14,7 @@ module.exports = appInfo => {
     prefix: '/public/',
     dir: path.join(appInfo.baseDir, '/public'),
     maxAge: 0,
+    buffer: false,
   };
 
   return config;
