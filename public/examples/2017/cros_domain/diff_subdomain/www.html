@@ -17,20 +17,17 @@
       ifr.src = src;
       ifr.style.display = 'none';
       document.body.appendChild(ifr);
-      return new Promise (function (resolve, reject) {
+      var promise = new Promise (function (resolve, reject) {
         ifr.onload = function () {
           ifr.onload = null;
           resolve(ifr.contentWindow);
         };
       });
+      return function () {
+        return promise;
+      }
     })('liylblog.com', 'http://m.liylblog.com/public/examples/2017/cros_domain/diff_subdomain/m.html');
 
-    getDomainIframe.then(function (win) {
-      var xhr = new win.XMLHttpRequest();
-      getData(xhr, function (data) {
-        document.querySelector('#console').innerHTML = data;
-      });
-    });
     
     function getData (xhr, fn) {
       xhr.open('GET', 'http://m.liylblog.com/public/examples/2017/cros_domain/diff_subdomain/m_data.json', true);
@@ -41,6 +38,15 @@
       }
       xhr.send();
     }
+
+    document.querySelector('#btn').addEventListener('click', function () {
+      getDomainIframe().then(function (win) {
+        var xhr = new win.XMLHttpRequest();
+        getData(xhr, function (data) {
+          document.querySelector('#console').innerHTML = data;
+        });
+      });
+    }, false);
   })();
   </script>
 </html>
