@@ -1,33 +1,8 @@
 # liylblog.com
 
-liyl blog
-
-## QuickStart
-
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
-
-### Development
-
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/news
-```
-
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+博客正在进行开发中... 
 
 
-[egg]: https://eggjs.org
+## 关于 issues 
+
+- 我会写一些关于前端的一些经验和文章, 欢迎围观

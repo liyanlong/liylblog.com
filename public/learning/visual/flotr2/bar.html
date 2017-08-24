@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>flotr2 学习 - 小李子的博客</title>
+  </head>
+  <body>
+    <div id="chart" style="width:90%; height: 300px; margin: auto;"></div>
+    <div id="chart2" style="width:400px; height: 300px; margin: auto;"></div>
+  </body>
+<script src="/public/static/lib/flotr2/flotr2.min.js"></script>
+<script>
+  window.onload = function () {
+    function createWalks (count, min, max) {
+      var walks = []
+      for (var i = 0; i < count; i++) {
+        walks.push([i, randomWalk(min, max)])
+      }
+      return walks
+    }
+    function randomWalk(min, max) {
+      var walk = Math.ceil(Math.random() * (max - min))  + min
+      return walk
+    }
+    function createTicks () {
+      var ticks = []
+      for (var i = 0; i < 31; i++) {
+        ticks.push([i, '8-' + i])
+      }
+      return ticks;
+    }
+    var options = {
+      title: '2017-08 当月的行走步数记录',
+      colors: ['#89AFD2'],
+      bars: {
+        show: true,
+        shadowSize: 0,
+        barWidth: 0.5,
+        fillOpacity: 1,
+        lineWidth: 0
+      },
+      xaxis: {
+        ticks: createTicks()
+      },
+      yaxis: {
+        min: 0,
+        tickDecimals: 0
+      },
+      grid: {
+        horizontalLines: false,
+        verticalLines: false,
+      }
+    };
+    Flotr.draw(
+      document.querySelector('#chart'),
+      [createWalks(31, 3000, 13000)],
+      options
+    );
+
+    var options2 = Object.assign(options, {
+      title: '我与好友的行走记录对比',
+      colors: ['#89AFD2', '#1D1D1D', '#DF021D', '#0E204B', '#E67840'],
+      bars: {
+        show: true,
+        shadowSize: 0,
+        barWidth: 0.2,
+        fillOpacity: 1,
+        lineWidth: 0
+      },
+      xaxis: {
+        ticks: [
+          [0, '我'],
+          [1, '小雷子'],
+        ]
+      }
+    })
+    Flotr.draw(
+      document.querySelector('#chart2'),
+      [createWalks(2, 7000, 10000)],
+      options2
+    )
+  };
+</script>
+</html>
