@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+      {% block title %}
+        李彦龙的博客
+      {% endblock %}
+    </title>
+    <link rel="stylesheet"  href="{{'css/style.css' | static_url}}" />
+</head>
+<body>
+  {% include "./header.njk" %}
+  {% block content %}
+    Hello Wolrd!
+  {% endblock %}
+</body>
+</html>
