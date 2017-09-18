@@ -3,7 +3,9 @@
 module.exports = app => {
   class HomeController extends app.Controller {
     * index() {
-      this.ctx.body = 'hi, egg';
+      yield this.ctx.render('home/index.njk', {
+        title: '李彦龙的博客首页'
+      });
     }
   }
   return HomeController;

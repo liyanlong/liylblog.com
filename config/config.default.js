@@ -13,5 +13,12 @@ module.exports = appInfo => {
     dir: path.join(appInfo.baseDir, '/public'),
   };
 
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.njk': 'nunjucks'
+    }
+  };
+
   return config;
 };
