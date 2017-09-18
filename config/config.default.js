@@ -1,7 +1,9 @@
 'use strict';
+
 const path = require('path');
 
 module.exports = appInfo => {
+
   const config = {};
 
   // should change to your own
@@ -11,6 +13,8 @@ module.exports = appInfo => {
   config.static = {
     prefix: '/public/',
     dir: path.join(appInfo.baseDir, '/public'),
+    maxAge: 0,
+    buffer: false,
   };
 
   config.view = {
@@ -22,3 +26,4 @@ module.exports = appInfo => {
 
   return config;
 };
+
