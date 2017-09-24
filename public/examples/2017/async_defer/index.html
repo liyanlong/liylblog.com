@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>小李子的博客 - script 异步与延时加载</title>
+  <style type="text/css"><!--
+    #console {
+      width: 100%;
+      max-width: 500px;
+      min-height: 200px;
+      max-heigh: 300px;
+      overflow-y: scroll;
+      resize: none;
+      outline: none;
+    }
+  -->
+  </style>
+  <script>
+    (function () {
+      var onReady = false;
+      var calls = [];
+      var _consoleLog = console.log;
+      var context = {};
+      document.onreadystatechange = function () {
+        if (document.readyState && document.readyState === 'complete') {
+          onReady = true;
+          while (calls.length) {
+            _log.apply(console, calls.shift());
+          }
+        }
+      }
+      
+      console.log = function () {
+        var args = [].slice.call(arguments, 0);
+        _consoleLog.apply(context, args);
+        if (!onReady) {
+          calls.push(args);
+        } else {
+          _log.apply(context, args);
+        }
+      }
+
+      function _log () {
+        var el = this.el || document.querySelector('#console');
+        var args = [].slice.call(arguments, 0);
+        if (!el) {
+          return;
+        }
+        el.value += args.join('\r\n');
+        el.value += '\r\n-----------------\r\n';
+      }
+    })();
+  </script>
+  <script id="script-a" src="./a.js" defer name="a.js"></script>  
+  <script id="script-b" src="./b.js" async name="b.js"></script>
+
+</head>
+<body>
+  <h1>script标签 中的 async 与 defer 的区别</h1>
+  <p><code>async</code> 当文档执行到了DOMContentLoaded时, 再加载 async script</p>
+  <p><code>defer</code> 延时加载, 忽略下载, 等文档解析完成后下载加载, 类似于移入在 body尾部的script引入</p>
+  <p><code>defer</code> 与 <code>async</code> 同时设置时, 默认 async 有效</p>
+
+  <div>
+    <p><label>控制台:</label></p>
+    <div><textarea id="console" readonly></textarea></div>
+  </div>
+  <script>
+    function setLoadedScript (id, name) {
+      var script = document.querySelector(id);
+      if (script.tagName !== 'SCRIPT') {
+        throw new TypeError('元素 不属于 scirpt tag');
+      }
+      script.onload = function (e) {
+        var name = script.getAttribute('name');
+        console.log('解析' + name + '完毕');
+      }
+    }
+
+    ['#script-a', '#script-b'].forEach(setLoadedScript);
+
+    window.onload = function () {
+      console.log('图片及 async 加载完成');
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      console.log('DOM 以及 defer script 加载完成');
+    });
+
+  </script>
+</body>
+</html>
