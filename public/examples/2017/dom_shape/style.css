@@ -1,0 +1,42 @@
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+  position: relative;
+  border: 1px solid #ddd;
+}
+.container .title {
+  position: absolute;
+  left: 0;
+  top : 0;
+  margin: 10;
+  font-size: 14px;
+}
+.flex {
+  display: flex;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #e3e3e3;
+  padding:10px;
+  box-sizing: border-box;
+}
+
+.box:first-of-type {
+  color: #fff;
+  background: -webkit-linear-gradient(90deg, #000, #fff);
+  background: linear-gradient(90deg, #000, #fff);
+}
+
+.box:last-of-type {
+  color: #fff;
+  text-align: right;
+  background: -webkit-linear-gradient(270deg, #000, #fff);
+  background: linear-gradient(270deg, #000, #fff);
+}

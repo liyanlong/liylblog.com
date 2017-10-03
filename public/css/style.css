@@ -1,0 +1,57 @@
+body {
+  margin: 0px;
+}
+
+div, nav {
+  box-sizing: border-box;
+}
+
+nav a.logo {
+  font-family: 'Sullivan-Fill', sans-serif;
+  font-size: 2.5em;
+  margin: 0;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+}
+.flex-justify-content {
+  -webkit-box-pack: justify !important;
+  justify-content: space-between !important;
+}
+
+.navbar {
+  position: relative;
+  z-index: 1000;
+  min-height: 50px;
+  margin-bottom: 0px;
+  border: 1px solid transparent;
+}
+
+.navbar-default {
+  padding-right: 10%;
+  padding-left: 10%;
+  width: 100%;
+  color: #fff;
+  background: #3d8137;
+  border: 0;
+  border-radius: 0;
+}
+
+.navbar li {
+  float: left;
+  list-style: none;
+  margin-right: 10px; 
+}
+
+.navbar li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar li:last-child {
+  margin-right: 0;
+}

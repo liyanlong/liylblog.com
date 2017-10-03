@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>小李子的博客 - 获取元素在文档的坐标</title>
+  <style type="text/css">
+    .box {
+      width: 200px;
+      height: 200px;
+      color: #fff;
+      border: 1px solid #ddd;
+      background: #333;
+    }
+    .static {
+      position: static;
+    }
+    .relative {
+      position: relative;
+    }
+    .absolute {
+      position: absolute;
+    }
+    .fixed {
+      position: fixed;
+    }
+    .scroll {
+      height: 100px;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body style="height: 1800px;">
+
+  <div class="relative scroll" style="margin-bottom: 100px; left: 400px;">
+    <div class="box static" name="static">
+      static box
+    </div>
+  </div>
+
+  <div class="relative" style="left: 200px;">
+    <div class="box relative" name="relative">
+        relative box
+    </div>    
+  </div>
+
+  <div class="relative" style="left: 200px;">
+      <div class="box absolute" name="absolute" style="left: 200px;">
+        absolute box
+      </div>
+  </div>
+
+  <div class="relative">
+      <div class="box fixed"  name="fixed" style="left: 610px; top:210px;">fixed box
+      </div>
+  </div>
+
+  <div class="fixed" style="position: fixed; bottom: 10; left: 0;">
+    <div class="output"></div>
+  </div>
+  <script src="/public/static/lib/requirejs/require.js" data-main="./main.js"></script>
+</body>
+</html>

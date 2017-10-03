@@ -1,1 +1,6 @@
 coverage
+public/
+test/web/
+resources/
+build/
+lib/

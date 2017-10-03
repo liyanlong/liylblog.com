@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>子域跨域解决方案 - 小李子的博客</title>
+  </head>
+  <body>
+    <button id="btn">点击一下</button> 获取<code>m.liylblog.com</code>的资源
+    <p>注意: 检查浏览器是否支持 promise</p>
+    <div>
+      <pre id="console"></pre>
+    </div>
+  </body>
+  <script>
+  (function () {
+    var getDomainIframe = (function (domain, src) {
+      document.domain = domain;
+      var ifr = document.createElement('iframe');
+      ifr.src = src;
+      ifr.style.display = 'none';
+      document.body.appendChild(ifr);
+      var promise = new Promise (function (resolve, reject) {
+        ifr.onload = function () {
+          ifr.onload = null;
+          resolve(ifr.contentWindow);
+        };
+      });
+      return function () {
+        return promise;
+      }
+    })('liylblog.com', 'http://m.liylblog.com/public/examples/2017/cros_domain/diff_subdomain/m.html');
+
+    
+    function getData (xhr, fn) {
+      xhr.open('GET', 'http://m.liylblog.com/public/examples/2017/cros_domain/diff_subdomain/m_data.json', true);
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          fn && fn(xhr.responseText);
+        }
+      }
+      xhr.send();
+    }
+
+    document.querySelector('#btn').addEventListener('click', function () {
+      getDomainIframe().then(function (win) {
+        var xhr = new win.XMLHttpRequest();
+        getData(xhr, function (data) {
+          document.querySelector('#console').innerHTML = data;
+        });
+      });
+    }, false);
+  })();
+  </script>
+</html>

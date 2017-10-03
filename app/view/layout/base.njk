@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>李彦龙的博客 - {% block title %}前端, Node.js, PHP{% endblock %}</title>
+  <link rel="stylesheet"  href="/public/css/style.css"/>
+  {% block head_link %}{% endblock %}
+</head>
+<body>
+  {% include "./header.njk" %}
+
+  {% block content %}
+    <div app-route="app/home">
+      Hello Wolrd!
+    </div>
+  {% endblock %}
+  
+  <script src="{{ lib/requirejs/require.js | static_url}}" data-main="/public/js/common.js"></script>
+  {% block after_content %}{% endblock %} 
+</body>
+</html>
