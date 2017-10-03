@@ -1,9 +1,13 @@
 {% extends "../layout/base.njk" %}
 
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}首页{% endblock %}
+{% block head_link %}{{helper.linkFor('/css/home/index.css')}}{% endblock %}
 
 {% block content %}
+<div data-route="app/home">
+  <canvas id="bg-star"></canvas>
+</div>
+{% endblock %}
 
+{% block after_content %}
 {% endblock %}

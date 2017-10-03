@@ -1,2 +1,6 @@
 coverage
-public/static/**
+public/
+test/web/
+resources/
+build/
+lib/

@@ -4,8 +4,17 @@ module.exports = app => {
   class HomeController extends app.Controller {
     * index() {
       yield this.ctx.render('home/index.njk', {
-        title: '李彦龙的博客首页'
       });
+    }
+
+    * vuessr() {
+      const vm = this.app.vuessr.createVue({
+        data: {
+          url: this.ctx.req.url,
+        },
+        template: '<div>访问的 URL 是： {{ url }}</div>',
+      });
+      this.ctx.body = yield this.app.vuessr.renderToString(vm);
     }
   }
   return HomeController;

@@ -17,11 +17,31 @@ module.exports = appInfo => {
     buffer: false,
   };
 
+  config.helper = {
+    link: {
+      version: '20170929',
+      useCdn: false,
+      cdnUrl: 'http://static.liylblog.com/',
+    },
+  };
+
   config.view = {
     defaultViewEngine: 'nunjucks',
     mapping: {
-      '.njk': 'nunjucks'
-    }
+      '.njk': 'nunjucks',
+    },
+  };
+
+  config.nunjucks = {
+    autoescape: false,
+  };
+
+  config.vuessr = {
+    root: path.join(appInfo.baseDir, '/resources'),
+    templateFile: 'index.template.html',
+    context: {
+      title: '李彦龙的博客',
+    },
   };
 
   return config;
