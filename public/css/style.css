@@ -27,7 +27,7 @@ nav a.logo {
   position: relative;
   z-index: 1000;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border: 1px solid transparent;
 }
 
@@ -35,6 +35,7 @@ nav a.logo {
   padding-right: 10%;
   padding-left: 10%;
   width: 100%;
+  color: #fff;
   background: #3d8137;
   border: 0;
   border-radius: 0;
@@ -47,7 +48,8 @@ nav a.logo {
 }
 
 .navbar li a {
-  color: #fff;  
+  color: #fff;
+  text-decoration: none;
 }
 
 .navbar li:last-child {

@@ -1,29 +1,32 @@
 // Karma configuration
-// Generated on Thu Sep 21 2017 11:06:43 GMT+0800 (CST)
-
+// Generated on Tue Oct 03 2017 11:43:04 GMT+0800 (CST)
+var path = require('path');
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: path.resolve(__dirname, '../../'),
+
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    // karma-jasmine karma-requirejs
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: [ 'jasmine', 'requirejs' ],
+
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'lib/**/*.js', included: false},
-      {pattern: 'src/**/*.js', included: false},
-      {pattern: 'test/**/*[sS]pec.js', included: false},
-      'test-main.js'
+
+      { pattern: 'public/js/lib/**/*.js', included: false },
+      { pattern: 'public/js/src/**/*.js', included: false },
+      { pattern: 'test/web/test/**/*[sS]pec.js', included: false },
+      path.join(__dirname, './test-main.js'),
     ],
+
 
     // list of files to exclude
     exclude: [
-      'src/main.js'
     ],
+
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -34,7 +37,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: [ 'progress' ],
 
 
     // web server port
@@ -56,7 +59,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: [ 'Chrome' ],
 
 
     // Continuous Integration mode
@@ -66,5 +69,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
-  })
-}
+  });
+};
