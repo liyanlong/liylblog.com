@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta name="keywords" content="MutationObserver, 小李子的博客">
+    <meta name="author" content="小李子">
+    <meta name="description" content="小李子的博客在线demo案例">
+    <title>小李子的博客 - MutationObserver API</title>
+  </head>
+  <body>
+    <h2>MutationObserver API 介绍</h2>
+    <p>原生DOM节点属性变化观察, 当属性变化时触发 Mutation Events</p>
+    <div id="app"></div>
+  </body>
+  <script type="x-template/text" id="template"> 
+    <div>
+      <p>当前浏览器支持情况: {{isSupport}}</p>
+      <p><label>文本：</label><input v-model="text" /></p>
+      <div ref="node">内容：<span v-pre></span></div>
+      <p>文本更新次数: {{count}}, Max: 10</p>
+    </div>
+  </script>
+  <script src="/public/static/lib/requirejs/require.js" data-main="./js/observer.js"></script>
+</html>
